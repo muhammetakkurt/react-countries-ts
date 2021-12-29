@@ -13,6 +13,7 @@ const Loading: FunctionComponent<ILoadingProps> = (props) => {
         <img
           src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif"
           width={50}
+          alt="Loading"
         />
       </div>
     );
