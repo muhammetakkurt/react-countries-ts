@@ -19,7 +19,7 @@ export default function Detail() {
 
   useEffect(() => {
     getCountry();
-  }, []);
+  }, [getCountry]);
 
   return (
     <div className="detail-country-container">
