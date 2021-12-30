@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Loading from "../components/Loading";
-import Search from "../components/Search";
-import Sidebar from "../components/Sidebar";
 import { getAllCountries } from "../services/country";
 import { CountryType } from "../types";
+import { Loading, Sidebar, Search } from "../components";
 
 export default function Home() {
   const [initCountries, setInıtCountries] = useState<CountryType[]>([]);

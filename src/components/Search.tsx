@@ -2,18 +2,19 @@ import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import SearchIcon from "../icons/search";
 import { CountryType } from "../types";
 
-const Search: FunctionComponent<{
+interface ISearch {
   countries: CountryType[];
   setCountries: Dispatch<SetStateAction<CountryType[]>>;
-}> = (props) => {
+}
+
+const Search: FunctionComponent<ISearch> = (props) => {
   const { countries, setCountries } = props;
   const [searchValue, setSearchValue] = useState<string>();
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
     setCountries(
       countries.filter((country) => {
-        console.log(event.target.value);
         return country.name.toLocaleLowerCase().includes(event.target.value);
       })
     );

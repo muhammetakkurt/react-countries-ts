@@ -1,10 +1,11 @@
 import { Dispatch, FunctionComponent, SetStateAction } from "react";
 import { CountryType } from "../types";
 
-const Sidebar: FunctionComponent<{
+interface ISidebar {
   countries: CountryType[];
   setCountries: Dispatch<SetStateAction<CountryType[]>>;
-}> = (props) => {
+}
+const Sidebar: FunctionComponent<ISidebar> = (props) => {
   const { countries, setCountries } = props;
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

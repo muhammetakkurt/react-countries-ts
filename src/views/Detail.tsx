@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import CountryTable from "../components/CountryTable";
-import Loading from "../components/Loading";
 import { getCountryByIsoCode } from "../services/country";
 import { CountryType } from "../types";
+import { Loading, CountryDataTable } from "../components";
 
 export default function Detail() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -40,7 +39,7 @@ export default function Detail() {
             />
           </div>
 
-          <CountryTable country={country} />
+          <CountryDataTable country={country} />
         </>
       </Loading>
     </div>

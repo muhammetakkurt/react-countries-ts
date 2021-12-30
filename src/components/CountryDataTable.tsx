@@ -1,9 +1,11 @@
 import { FunctionComponent } from "react";
 import { CountryType } from "../types";
 
-const CountryTable: FunctionComponent<{ country: CountryType } | any> = (
-  props
-) => {
+interface ICountryTable {
+  country: CountryType;
+}
+
+const CountryDataTable: FunctionComponent<ICountryTable> = (props) => {
   const { country } = props;
 
   const cleanUpName = (name: string) => {
@@ -13,24 +15,21 @@ const CountryTable: FunctionComponent<{ country: CountryType } | any> = (
       .concat(clearName.substring(1, clearName.length));
   };
 
-  const printData = (name: any) => {
-    console.log(typeof name);
-    switch (typeof name) {
+  const printData = (data: string | boolean | number | ArrayLike<object>) => {
+    switch (typeof data) {
       case "string":
-        return name;
       case "boolean":
-        return name;
       case "number":
-        return name;
+        return data;
       case "object":
         if (
-          Object.values(name)[0] !== undefined &&
-          typeof Object.values(name)[0] === "object"
+          Object.values(data)[0] !== undefined &&
+          typeof Object.values(data)[0] === "object"
         ) {
-          const test = Object.values<object>(name)[0];
-          return Object.values(test).join(", ");
+          const [value] = Object.values<object>(data);
+          return Object.values(value).join(", ");
         } else {
-          return Object.values(name).join(", ");
+          return Object.values(data).join(", ");
         }
       default:
         return;
@@ -40,15 +39,14 @@ const CountryTable: FunctionComponent<{ country: CountryType } | any> = (
   return (
     <div className="country-table">
       {country &&
-        Object.keys(country).map((c, y) => {
+        Object.entries(country).map(([key, data]) => {
           return (
-            <div className="country-col" key={y}>
-              {console.log(country)}
+            <div className="country-col" key={key}>
               <span className="w-full text-right pr-5 border-b">
-                {cleanUpName(c)}
+                {cleanUpName(key)}
               </span>
               <span className="w-full flex justify-items-start border-b">
-                {printData(country[c])}
+                {printData(data)}
               </span>
             </div>
           );
@@ -56,4 +54,4 @@ const CountryTable: FunctionComponent<{ country: CountryType } | any> = (
     </div>
   );
 };
-export default CountryTable;
+export default CountryDataTable;
